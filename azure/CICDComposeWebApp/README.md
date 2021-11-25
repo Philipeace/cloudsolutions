@@ -9,7 +9,7 @@ This project deploys the flask app using docker-compose to run the app with guni
         - CICD pipeline for Compose WebApp
         - Compose Nginx-Gunicorn/Flask application
 
-# Prerequisits:
+# Prerequisits
 - as described in [terraform][1]
 
 # Get Started

@@ -1,4 +1,4 @@
-# Prerequisits:
+# Prerequisits
 - snowflake account (required)
 - azure account (optional)
 - azure cli (optional)

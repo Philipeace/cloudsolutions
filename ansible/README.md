@@ -1,7 +1,7 @@
 # About this Project
 This project deploys the flask app using ansible to configure and run the app with gunicorn and nginx on a remote machine.
 
-# Prerequisits:
+# Prerequisits
 - as described in [terraform/Snowflake][1]
 - ansible installed
 
