@@ -2,7 +2,7 @@
 This project deploys the flask app using docker-compose to run the app with gunicorn in one container and nginx in another. It is automated with a CICD pipeline that runs unit-tests, builds the compose images and deploys them to an existing AppService on Azure.
 
 
-# Prerequisits:
+# Prerequisits
 - as described in [terraform][1]
 
 # Get Started

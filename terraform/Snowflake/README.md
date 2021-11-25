@@ -1,4 +1,4 @@
-# Prerequisits:
+# Prerequisits
 - snowflake account (required)
 - terraform installed
 
