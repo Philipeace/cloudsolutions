@@ -1,0 +1,125 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'XXXXXX' #<- enter valid service connection from pipeline here
+  imageRepository: 'txtapp'
+  # In Azure DevOps in the project settings service connections create the txtappsubendpoint
+  azureSubscriptionEndpoint: 'txtappsubendpoint'
+  azureContainerRegistry: 'txtappregistry.azurecr.io'
+  tag: '$(Build.BuildId)'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Test
+  displayName: Test Flask App
+  jobs:
+  - job: Test
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.9' 
+        addToPath: true 
+    - bash: |
+        cd ./app
+        pip install pipenv
+        pipenv install
+      displayName: 'Install pipenv and dependencies'
+    - bash: |
+        cd ./app
+        pipenv run py.test --junitxml results.xml apitest.py
+      env:
+        SNOWFLAKE_USERNAME: $(SNOWFLAKE_USERNAME)
+        SNOWFLAKE_PASSWORD: $(SNOWFLAKE_PASSWORD)
+        SNOWFLAKE_ACCOUNT: $(SNOWFLAKE_ACCOUNT)
+      displayName: 'Running unit test'
+    - task: PublishTestResults@2
+      displayName: 'Publish test result /results.xml'
+      inputs:
+        testResultsFiles: '/home/vsts/work/1/s/app/results.xml'
+        testRunTitle: results       
+      
+- stage: BuildPush
+  jobs: 
+  - job: Build
+    displayName: Build Image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: DockerCompose@0
+      displayName: Build services
+      inputs:
+        action: Build services
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        dockerComposeFile: 'docker-compose.yml'
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
+        dockerComposeFileArgs: |
+          SNOWFLAKE_USERNAME=$(SNOWFLAKE_USERNAME)
+          SNOWFLAKE_ACCOUNT=$(SNOWFLAKE_ACCOUNT)
+          SNOWFLAKE_PASSWORD=$(SNOWFLAKE_PASSWORD)
+    - task: DockerCompose@0
+      displayName: Push services
+      inputs:
+        action: Push services
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        dockerComposeFile: docker-compose.yml
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
+        dockerComposeFileArgs: |
+          SNOWFLAKE_USERNAME=$(SNOWFLAKE_USERNAME)
+          SNOWFLAKE_ACCOUNT=$(SNOWFLAKE_ACCOUNT)
+          SNOWFLAKE_PASSWORD=$(SNOWFLAKE_PASSWORD) 
+
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    displayName: Deploy Instance from Image
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    # - task: DockerCompose@0
+    #   displayName: Run services
+    #   inputs:
+    #     action: Run services
+    #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    #     azureContainerRegistry: $(azureContainerRegistry)
+    #     dockerComposeFile: docker-compose.yml
+    #     projectName: $(Build.Repository.Name)
+    #     serviceName: 'txtapp'
+    #     qualifyImageNames: true
+    #     buildImages: true
+    #     ports: '80:80'
+    #     dockerComposeFileArgs: |
+    #       SNOWFLAKE_USERNAME=$(SNOWFLAKE_USERNAME)
+    #       SNOWFLAKE_ACCOUNT=$(SNOWFLAKE_ACCOUNT)
+    #       SNOWFLAKE_PASSWORD=$(SNOWFLAKE_PASSWORD)
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: $(azSubscription)
+        appName: 'txtapp'
+        deployToSlotOrASE: true
+        resourceGroupName: 'txtapprg'
+        slotName: 'production'
+        multicontainerConfigFile: 'docker-compose-run.yml'
+        appSettings: |
+          -WEBSITES_CONTAINER_START_TIME_LIMIT 600 -SNOWFLAKE_ACCOUNT '$(SNOWFLAKE_ACCOUNT)' -SNOWFLAKE_PASSWORD '$(SNOWFLAKE_PASSWORD)' -SNOWFLAKE_USERNAME '$(SNOWFLAKE_USERNAME)'
+        configurationStrings: |
+          -SNOWFLAKE_ACCOUNT '$(SNOWFLAKE_ACCOUNT)' -SNOWFLAKE_PASSWORD '$(SNOWFLAKE_PASSWORD)' -SNOWFLAKE_USERNAME '$(SNOWFLAKE_USERNAME)'
+        #not sure which one of the two options above made it work

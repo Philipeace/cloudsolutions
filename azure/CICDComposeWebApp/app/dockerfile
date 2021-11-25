@@ -1,0 +1,20 @@
+# syntax=docker/dockerfile:1
+FROM python:3.9-slim-bullseye
+
+WORKDIR /app
+
+# RUN pip3 install --upgrade pip
+RUN pip3 install pipenv
+# RUN pip3 install --upgrade pipenv
+COPY Pipfile .
+COPY Pipfile.lock .
+RUN pipenv install --system --deploy --ignore-pipfile
+COPY $SNOWFLAKE_USERNAME $SNOWFLAKE_USERNAME
+COPY $SNOWFLAKE_ACCOUNT $SNOWFLAKE_ACCOUNT
+COPY $SNOWFLAKE_PASSWORD $SNOWFLAKE_PASSWORD
+
+COPY . .
+# RUN mkdir files
+EXPOSE 8080
+CMD ["pipenv", "run", "gunicorn", "-c", "gunicorn.conf.py"]
+#"-t", "60", "--limit-request-line", "8190","-b", "0.0.0.0:80", "--log-level", "debug", "--timeout", "600", "--worker-class", "gevent"

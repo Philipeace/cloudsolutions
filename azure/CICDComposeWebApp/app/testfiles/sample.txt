@@ -1,0 +1,41 @@
+© Leibniz-Institut für Deutsche Sprache, Mannheim
+COSMAS II-Server, C2API-Version 4.20.6 - 06.08.2021
+________________________________________________________________________________
+
+Datum         : Mittwoch, den 1. September 2021, 18:17:54
+Archiv        : W - Archiv der geschriebenen Sprache
+Korpus        : spiegel - Der Spiegel, 1947 - 2020
+Archiv-Release: Deutsches Referenzkorpus DeReKo-2021-I
+Suchanfrage   : ((*otin /+2w,0s,Max (und /+2w,0s,Max *ot)) or ((*otinnen /+2w,0s,Max (und /+2w,0s,Max *oten)) or ((*otin /+2w,0s,Max (oder /+2w,0s,Max *ot)) or (*otinnen /+2w,0s,Max (oder /+2w,0s,Max *oten)))))
+Suchoptionen  : Eb+Rb+Db, Flex+Sonst
+Ergebnis      : 2 Treffer
+
+
+KWIC (unsortiert)
+
+Anz. Treffer           : 2
+Anz. exportierte Zeilen: 2
+Angezeigter Kontext    : 3 Sätze links, 3 Sätze rechts
+Kontext umschließt     : gesamten Treffer
+________________________________________________________________________________
+
+S16   Verlust.  In dem Brandbrief an die 1250 <B>Pilotinnen und Piloten</> des Unternehmens teilen
+S66           Lema, 32, seine Frau Betty, die <B>Pilotin und</> ein <B>Kopilot.</> Tony Lema
+
+
+Belege (unsortiert)
+
+Anz. Treffer           : 2
+Anz. exportierte Belege: 2
+Angezeigter Kontext    : 1 Absatz links, 1 Absatz rechts
+Kontext umschließt     : gesamten Treffer
+________________________________________________________________________________
+
+Es war einmal in Deutschland ein kleiner, lieblicher und sanfter Trollmann. Sein Name war Gerold. "Du bist mein Lieblingsbaum" sagte er oft zu seinem Baum.
+"Warum stehst du einsam und alleine in der Garten"? fragte <B>sein Baum</> jedesmal wenn Gerold vorbeikam. "Wenn du bei mir bist, geht die Welt nicht unter" sagte Gerold und blieb stehen. "Du bist mein Gefährte, mein Beschützer, mein Freund. Und ich werde nie alleine sein."
+"Aber ich bin nie alleine", sagte der Baum. (S16/FEB.00260 Der Spiegel, [Wochenzeitschrift], 20.02.2016, S. 86. - Sachgebiet: Wirtschaft, Originalressort: Wirtschaft; Brandbrief an die Piloten)
+
+"Dann komm mich besuchen", säuselte der Trollmann. "Nein", antwortete der Baum, "Ich kann nicht für immer mit dir gehen. Du bist ein Mensch, Gerold, und wirst immer wieder weggehen. Das ist das Schlimme daran. Du gehst, ich bleibe. Gerold, wenn dennoch einmal der Tag kommt, an dem du für immer bei mir bleiben willst, dann brauchst du dir nichts einzubilden. Bleib bei mir bis in alle Ewigkeit." 
+Gerold antwortete: "Nein, das werde ich nicht tun. Einmal wird meine Frau da sein und dann wirst du mir nicht mehr nahe sein."
+ (S66/AUG.00270 Der Spiegel, [Wochenzeitschrift], 22.08.1966, S. 108. - Sachgebiet: Sport, Originalressort: Sport; Tod am 17. Grün)
+

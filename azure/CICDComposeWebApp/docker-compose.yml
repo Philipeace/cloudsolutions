@@ -1,0 +1,38 @@
+version: '3'
+
+networks:
+  txtapp:
+    driver: bridge
+
+services:
+  flask:
+    build: ./app
+    container_name: flask
+    restart: always
+    environment:
+      - SNOWFLAKE_PASSWORD=$SNOWFLAKE_PASSWORD
+      - SNOWFLAKE_USERNAME=$SNOWFLAKE_USERNAME
+      - SNOWFLAKE_ACCOUNT=$SNOWFLAKE_ACCOUNT
+    ports:
+      - "8080:8080"
+    expose: 
+      - 8080
+    networks: 
+      - txtapp
+    volumes:
+      - ./app/files:/app/files
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    networks: 
+      - txtapp
+    volumes:
+      - ./nginx/sites:/etc/nginx/sites-available
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - flask
+    links: 
+      - flask

@@ -1,0 +1,9 @@
+FROM nginx
+
+COPY nginx.conf /etc/nginx/
+
+COPY /sites/flask.conf /etc/nginx/available-sites/
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+

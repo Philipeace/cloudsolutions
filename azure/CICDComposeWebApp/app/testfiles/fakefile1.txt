@@ -1,0 +1,85 @@
+© Leibniz-Institut für Deutsche Sprache, Mannheim
+COSMAS II-Server, C2API-Version 4.20.5 - 16.07.2021
+________________________________________________________________________________
+
+Datum         : Freitag, den 6. August 2021, 15:12:11
+Archiv        : W - Archiv der geschriebenen Sprache
+Korpus        : spiegel - Der Spiegel, 1947 - 2020
+Archiv-Release: Deutsches Referenzkorpus DeReKo-2021-I
+Suchanfrage   : (*ent /0w,Max (in or innen))
+Suchoptionen  : Eb+Rb+Db, Flex
+Ergebnis      : 10 Treffer
+
+
+KWIC (unsortiert)
+
+Anz. Treffer           : 10
+Anz. exportierte Zeilen: 10
+Angezeigter Kontext    : 3 Sätze links, 3 Sätze rechts
+Kontext umschließt     : gesamten Treffer
+________________________________________________________________________________
+
+S75  ausländischen Arbeitnehmerkinder. Ein(e) <B>Abiturient(in)</> wird Bankkaufmann oder med.
+S75        wird Bankkaufmann oder med. techn. <B>Assistent(in).</> Wer nimmt sich nach aufwendiger,
+S77   mir einleuchtet, daß man in Deutsch als <B>Abiturient(in)</> eine Eins bekommen kann, ohne
+S88       ist, den die BRD besitzt - aber als <B>Student(in)</> fühlt man sich heutzutage nur noch
+S88  drastisch. So sind heute mehr als 32 500 <B>Student(innen)</> an den hessischen FHs
+S90     er auch mal glücklich sein."  Der/die <B>Patient(in),</> inzwischen 82 und Rentnerin,
+S18    Aus der »taz«: »Wenn Drogenhändler und <B>Konsument(*)innen</> vertrieben werden, ziehen sie
+S19    AfD-Wähler ansprechen und gleichzeitig <B>Student(*)innen,</> denen der Genderstar am Herzen
+S19  nicht.«  Er hat nichts gegen Ferkel oder <B>Student(*)innen.</> Nur: Ohne festen Standpunkt
+S20   mehrstündige Versammlung von bis zu 100 <B>Absolvent(*)innen</> in einem Raum kann nicht im
+
+
+Belege (unsortiert)
+
+Anz. Treffer           : 10
+Anz. exportierte Belege: 10
+Angezeigter Kontext    : 1 Absatz links, 1 Absatz rechts
+Kontext umschließt     : gesamten Treffer
+________________________________________________________________________________
+
+Nürnberg DR. RANZ LANZ Theologe und Pädagoge
+Da kam aus dem Gebüsch kurz vor ihnen ein Junge. "Hallo" sagte er und lächelte. Die kleinen </B>Pilze</> und die Weisen fingen an zu zittern, denn sie ahnten, daß dies kein guter Junge war.
+"Wir suchen jemanden", sagte der Anführer der kleinen Pilze. (S75/FEB.00013 Der Spiegel, [Wochenzeitschrift], 03.02.1975, S. 7. - Sachgebiet: Leserbriefe, Originalressort: Briefe; Kostenfaktor unter vielen)
+
+DR. KRANZ HOHL Theologe und Pädagoge
+"Wir suchen jemanden", sagte der Anführer der kleinen Pilze.
+Der Junge lachte und blickte die Weisen an. "Ihr sucht vielleicht einen <B>starken Mann</>, den ihr zu Euch holen könnt. Was meint ihr denn, mit starker Magie könnte ich Euch zurückholen?" (S75/FEB.00013 Der Spiegel, [Wochenzeitschrift], 03.02.1975, S. 7. - Sachgebiet: Leserbriefe, Originalressort: Briefe; Kostenfaktor unter vielen)
+
+"Auch das könnte eine Lüge sein", sagte der Junge und lachte. "Ihr seht so aus, als ob ihr <B>eine andere Welt</> gesucht hättet, aber vielleicht ist das auch nur eine Lüge. Ich habe noch nie jemanden gesehen, der nicht nach etwas suchte und es nicht wusste, was er suchte."
+"Wir suchen jemanden, der unseren (S77/AUG.00223 Der Spiegel, [Wochenzeitschrift], 15.08.1977, S. 62. - Sachgebiet: Politik, Originalressort: Titelgeschichte Essay Deutschland; Zu Hitler fällt uns nichts ein)
+
+Der Junge schüttelte <B>den Kopf</>. "Das glaube ich nicht. Das kann man nicht suchen. Das sucht man einfach, wenn man es braucht."
+"Und wenn nicht?", (S88/DEZ.00136 Der Spiegel, [Wochenzeitschrift], 12.12.1988, S. 7. - Sachgebiet: Leserbriefe, Originalressort: Briefe; Verraten und verkauft (Nr. 47/1988, SPIEGEL-Titel: Universitäten)
+
+fragte der Anführer der Pilze. "Wenn nicht, haben wir verloren, und wir sind verloren", sagte der Junge und lachte. "Wir geben unseren Wächtern und den, die uns kontrollieren, mehr Macht, als uns das irgendwie gegeben werden kann und wir werden nie mehr frei sein werden."
+Die kleinen Pilze traten einen <B>Schritt zurück und sahen den Jungen</> mit einem seltsamen und traurigen Blick an.
+Der Junge blickte wieder auf die Weisen. "Ihr fragt euch bestimmt, wer ich bin."
+"Das ist eine gute Frage", sagte er. "Das weiß ich selber noch nicht genau. Aber ich weiß, was ich suche."
+"Was kann das sein?" fragte die Weisen. (S88/DEZ.00136 Der Spiegel, [Wochenzeitschrift], 12.12.1988, S. 7. - Sachgebiet: Leserbriefe, Originalressort: Briefe; Verraten und verkauft (Nr. 47/1988, SPIEGEL-Titel: Universitäten)
+
+Der Baum blickte den neuen Besuchern mit einem erstaunten Blick entgegen. Dann lief er auf sie zu und nahm sie in seinen Arm. "Ihr seid gekommen", sagte er, "das ist die beste Nachricht, die ich heute bekam. Aber was macht ihr hier in dieser Zeit. Ihr solltet doch zu Hause bleiben. Es ist besser, dort zu bleiben, da es draußen nicht sicher ist."
+"Das sagte uns der Rat", antwortete ich. "Hier wohnen wir mit <B>unseren Freunden</>, wenn wir wollen. Wir sind frei."
+"Frei?", fragte der Baum. "Fühlst du dich frei?"
+"Sehr frei!" schrieen die kleinen Pilze.
+"Sehr frei!", schrieen alle Blumen.(S90/JUN.00396 Der Spiegel, [Wochenzeitschrift], 25.06.1990, S. 178. - Sachgebiet: Kultur, Originalressort: Kultur; Vergessene Gruppe)
+
+"Wenn ich dort vorbeigehe" fuhr <B>der Baum</> fort, "ist es mir, als würde ich ein Stück rechts abgebogen sein. Und bei mir zu Haus ist es anders. Es ist andererseits fast, als würde ich auf der anderen Seite herumspazieren. Das macht alles seine Schuld."
+Die Weisen starrten ihn an. (S18/OKT.00171 Der Spiegel, [Wochenzeitschrift], 10.10.2018, S. 130. Originalressort: Hohlspiegel; Hohlspiegel)
+
+Der Baum wollte, daß sie alle bei sich blieben, bis er sie entlassen konnte. Erst dann konnte es sein, daß sie sich von ihrem langen Aufenthalt im Freien erholen konnten. 
+So standen die Weisen eines Morgens in dem <B>großen, sonnenhellen Empfangszimmer</> des Baumes und warteten. Der Baum, zeigte ihnen die Aussicht und lauschte den rollenden Wogen der Zeit.
+Die Sonne schien ihm ein wenig in den Augen. Sie schien ihn direkt an, und er blinzelte. Dann war es wieder dunkel.
+Der Baum stieß einen unterdrückten Schrei aus. Die Weisen blickten sich heftig um, aber niemand gab den Baum zu, daß sie ihn bemerkt hatten. "Was war das?" fragten sie sich.
+"Es war nichts" sagte der Baum. "Ich habe mir nur etwas gewünscht. Es dauert immer länger, bis ich wieder verändert bin. Du wirst dich erinnern, Opa, daß ich das am Anfang sehr grau war. Sie haben mich auch alle grau gefunden. Alles ist grau in der Welt da draußen. 
+Das Elternhaus." (S19/JAN.00228 Der Spiegel, [Wochenzeitschrift], 19.01.2019, S. 26. - Sachgebiet: Politik, Originalressort: Deutschland; Im Schacht)
+
+"Mir fällt ein Rätsel auf," sagte er <B>eines Tages</> zu seinen Weisen. "Es ist ein Ereignis, das seit tausend Jahren, ja Jahrhunderten, niemand bemerkt hat. Obgleich ich längst in die Welt gekommen bin, bleibt es doch immer ein Rätsel. Ich habe mich noch nicht recht klar gemacht, wie es geschehen konnte."
+Die Weisen, die bei ihm gewohnt und ihn seit so vielen, vielleicht zu vielen Jahren begleitet hatten, gaben sich alle Mühe, zu erraten, was der Baum meinte. Sie waren nicht mehr die Jüngsten und die Erfahrensten unter ihnen. Ihr Weg war längst von jener Zeit abgegangen. Allein an den Tagen, an denen sie mit ihm verbrachten, war eine hellere Zuversicht in ihren Augen. 
+(S19/JUL.00239 Der Spiegel, [Wochenzeitschrift], 20.07.2019, S. 58. - Sachgebiet: Gesellschaft, Originalressort: Gesellschaft; Unter Last)
+
+Der Baum vermerkte diese Einsamkeit ganz und gar nicht gern. Er hatte sich in seiner Jugend mit seinen Stammesgenossen unterhalten und überall einen herzlichen Empfang gehabt. Nun durchwachs er fast alleine und die Freunde und Verwandten wuchsen schnell aus allen Teilen der Welt, wo seine Art lebte, heran und verließen ihn.
+Die Tage, die der Baum mit seinen <B>Weisen verbrachte</>, wurden immer kürzer. Die Sonne ging so allmählich unter und die Stunde der Dämmerung kam näher. 
+ (S20/APR.00034 Der Spiegel, [Wochenzeitschrift], 04.04.2020, S. 48. - Sachgebiet: Politik, Originalressort: Deutschland; Die Geduldsprüfung)
+

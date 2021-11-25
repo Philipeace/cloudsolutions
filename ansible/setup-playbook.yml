@@ -1,0 +1,84 @@
+- hosts: web
+  become: yes
+  tasks:
+  - name: "apt update"
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600
+
+  - name: "install nginx, python, pip"
+    apt:
+      name: ['nginx','python3.9','python3-pip']
+      state: latest
+
+  - name: "copy backend"
+    copy:
+      remote_src: no
+      src: path/to/ansible/app  #<- fill in right path
+      dest: /etc/
+      mode: '0755'
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+
+  - name: setup pipenv
+    shell: |
+      PYTHONPATH=/usr/local/bin/python3.9
+      cd /etc/app
+      mkdir .venv
+      pip install pipenv
+      PIPENV_VENV_IN_PROJECT=true
+      pipenv install --ignore-pipfile
+    notify: start backend
+
+  - name: "create www directory"
+    file:
+      path: /var/www/{{ domain }}
+      state: directory
+      mode: '0755'
+      owner: "{{ ansible_user }}"
+      group: "{{ ansible_user }}"
+
+  - name: delete default nginx site
+    file:
+      path: /etc/nginx/sites-enabled/default
+      state: absent
+    notify: restart nginx
+
+  - name: set nginx permissions
+    file:
+      path: /etc/nginx
+      mode: '0755'
+      recurse: yes
+
+  - name: Allow all access to tcp port 80
+    community.general.ufw:
+      rule: allow
+      port: '80'
+      proto: tcp
+
+  - name: copy nginx flask.conf
+    template:
+      src: flask.conf.j2
+      dest: /etc/nginx/sites-enabled/site.conf
+      owner: root
+      group: root
+      mode: '0644'
+    notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+    - name: start backend
+      shell: |
+        PYTHONPATH=/usr/local/bin/python3.9
+        cd /etc/app
+        nohup pipenv run gunicorn -c gunicorn.conf.py &
+      environment:
+        SNOWFLAKE_USERNAME: "{{  sfusr  }}"
+        SNOWFLAKE_PASSWORD: "{{ sfpwd }}"
+        SNOWFLAKE_ACCOUNT: "{{ sfac }}"
+      # above needs nohup to run in the background, & alone won't actually start gunicorn and without both it will just run indefinitely
+      

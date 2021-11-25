@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Snowflake Data</title>
+    </head>
+    <body>
+        <h1>Data</h1>
+    <h2>
+      <a href="/">Home</a>
+    </h2>
+        <table class="table table-striped">
+            <tr>
+                <th>primary id</th>
+                <th>docID</th>
+                <th>Quelle</th>
+                <th>Text</th>
+                <th>Datum</th>
+                <th>Titel</th>
+                <th>Vorkommen</th>
+                <th>Extra-Info</th>
+                <th>Ressort</th>
+                <th>Fachgebiet</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td>{{ row[9] }}</td>
+                <!-- <td><button action="/data" method="DELETE">
+                    <form action="/data" method="POST">
+                        <input name="col" style="display:none" value="{{row[0]}}"/></form>
+                </button></td> -->
+                <td><form action="/data" method="POST">
+                        <input name="col" style="display:none" value="{{row[0]}}"/>
+                        <button type="submit">DELETE</button>
+                </form></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

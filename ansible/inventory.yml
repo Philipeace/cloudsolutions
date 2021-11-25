@@ -1,0 +1,13 @@
+
+web:
+  hosts:
+    192.168.182.131 #<- put your IP here
+  vars:
+    domain: flask.app
+    ansible_user: "*****"
+    ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    ansible_sudo_pass: "*****" 
+    sfusr: "*****"
+    sfpwd: "*****"
+    sfac: "*****"
+  

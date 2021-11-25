@@ -1,0 +1,53 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>Upload File</h1>
+<form method="POST" action="/" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="submit" value="Add">
+</form>
+<h1>Data</h1>
+<h2>
+  <a href="/data">Data</a>
+</h2>
+<h2><a href="/download/{{ filename }}"">Download {{ filename }}</a></h2>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>docID</th>
+        <th>Quelle</th>
+        <th>Text</th>
+        <th>Datum</th>
+        <th>Titel</th>
+        <th>Vorkommen</th>
+        <th>Extra-Info</th>
+        <th>Ressort</th>
+        <th>Fachgebiet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[6] }}</td>
+        <td>{{ row[7] }}</td>
+        <td>{{ row[8] }}</td>
+        <td>{{ row[9] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

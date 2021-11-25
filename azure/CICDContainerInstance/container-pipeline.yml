@@ -1,0 +1,72 @@
+
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'XXXXXX' #<- enter valid service connection from pipeline here
+  imageRepository: 'txtapprepo'
+  containerRegistry: 'txtappregistry.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'
+  tag: '$(Build.BuildId)'
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Test
+  jobs:
+  - job: Test
+    displayName: Test
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: UsePythonVersion@0
+      displayName: 'Run Tests using Python 3.9'
+      inputs:
+        versionSpec: '3.9' 
+        addToPath: true 
+    - bash: |
+        pip install pipenv
+        pipenv install
+      displayName: 'Install pipenv and dependencies'
+    - bash: pipenv run py.test --junitxml results.xml apitest.py
+      env:
+        SNOWFLAKE_USERNAME: $(SNOWFLAKE_USERNAME)
+        SNOWFLAKE_PASSWORD: $(SNOWFLAKE_PASSWORD)
+        SNOWFLAKE_ACCOUNT: $(SNOWFLAKE_ACCOUNT)
+      displayName: 'Running unit test'
+    - task: PublishTestResults@2
+      displayName: 'Publish test result /results.xml'
+      inputs:
+        testResultsFiles: '/home/vsts/work/1/s/results.xml'
+        testRunTitle: results
+
+- stage: BuildPush
+  jobs:
+  - job: Build
+    steps:
+    - task: Docker@2
+      displayName: Build and Push image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    steps:
+    - task: AzureCLI@2
+      displayName: Deployment to Container Instance
+      inputs:
+          azureSubscription: '$(azSubscription)'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az container create -g $(resourceGroup) --name txtapp --image $(acrLoginServer)/$(imageRepository):$(Build.BuildId) --cpu 1 --memory 1 --registry-login-server $(acrLoginServer) --registry-username $(acrName) --registry-password $(acrPassword) --dns-name-label txtapp --ports 80 -e "SNOWFLAKE_USERNAME"="$(SNOWFLAKE_USERNAME)" "SNOWFLAKE_PASSWORD"="$(SNOWFLAKE_PASSWORD)" "SNOWFLAKE_ACCOUNT"="$(SNOWFLAKE_ACCOUNT)"'

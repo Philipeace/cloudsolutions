@@ -1,0 +1,7 @@
+snowflake_username = "XXXXXXX"
+snowflake_password = "XXXXXXX"
+snowflake_account  = "XXXXXXX"
+azure_devops_url   = "XXXXXXX"
+azure_access_token = "XXXXXXX"
+container_username = "XXXXXXX"
+container_password = "XXXXXXX"

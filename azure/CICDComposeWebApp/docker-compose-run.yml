@@ -1,0 +1,37 @@
+version: '3'
+
+networks:
+  txtapp:
+    driver: bridge
+
+services:
+  flask:
+    image: XXXXXXXXXX # <- add full path to image repository like: txtappregistry.azurecr.io/[azureaccount][git_repo]_flask:latest
+    container_name: flask
+    restart: always
+    environment:
+      - SNOWFLAKE_PASSWORD=$SNOWFLAKE_PASSWORD
+      - SNOWFLAKE_USERNAME=$SNOWFLAKE_USERNAME
+      - SNOWFLAKE_ACCOUNT=$SNOWFLAKE_ACCOUNT
+    ports:
+      - "8080:8080"
+    expose: 
+      - 8080
+    networks: 
+      - txtapp
+
+  nginx:
+    image: XXXXXXXXXX # <- add full path to image repository like: txtappregistry.azurecr.io/[azureaccount][git_repo]_nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - "80:80"
+    networks: 
+      - txtapp
+    volumes:
+     - azstmnt:/var/log/nginx
+      # need to create an azure storage account and a file share, then create a path mapping in the webapp in azure
+    depends_on:
+      - flask
+    links:
+      - flask
