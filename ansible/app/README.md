@@ -37,7 +37,7 @@ On "/data" the app shows the first 100 rows of the database and allows for the u
    ```
     pipenv run flask run
    ```
-you should now be able to see flask running on http://localhost:5000
+You should now be able to see flask running on http://localhost:5000 and test it with files from [testfiles][2]
 
 6. (optional on linux) run gunicorn with
 
@@ -45,14 +45,15 @@ you should now be able to see flask running on http://localhost:5000
     pipenv run gunicorn -c gunicorn.conf.py
    ```
 
-you should now be able to see gunicorn running on http://localhost:8080
+You should now be able to see gunicorn running on http://localhost:8080 and test it with files from [testfiles][2]
 
 Common pitfalls:
    ```
     SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
    ```
 
-[Back to main][2]
+[Back to main][3]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake
-[2]: https://github.com/Philipeace/cloudsolutions/tree/main/
+[2]: https://github.com/Philipeace/cloudsolutions/tree/main/ansible/app/testfiles
+[3]: https://github.com/Philipeace/cloudsolutions/tree/main/

@@ -67,21 +67,27 @@ This project deploys the flask app using docker-compose to run the app with guni
 
 
 # Run locally:
-If you have created the [terraform/Snowflake][3] infrastructure and created the first 3 variables from 2.3 on your environment run:
+If you have created the [terraform/Snowflake][3] infrastructure and created the first 3 variables (snowflake) from 13 on your environment run:
    ```
     docker-compose build --no-cache --pull
 
     docker-compose up
    ```
 
+You should now be able to see the nginx+gunicorn/flask app in your browser at http://localhost and test it with files from [testfiles][4]
+
 Common pitfalls:
    ```
     SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
    ```
 
-[Back to main][4]
+[Back to main][5]
+
+[Or learn  more about the flask app][6]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform
 [2]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake_Azure
 [3]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake
-[4]: https://github.com/Philipeace/cloudsolutions/tree/main/
+[4]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDComposeWebApp/app/testfiles
+[5]: https://github.com/Philipeace/cloudsolutions/tree/main/
+[6]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDComposeWebApp/app/

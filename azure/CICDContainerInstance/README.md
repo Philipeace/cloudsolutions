@@ -60,9 +60,9 @@ If you have created the [terraform/Snowflake][3] infrastructure and created the 
     docker run -e SNOWFLAKE_USERNAME -e SNOWFLAKE_PASSWORD -e SNOWFLAKE_ACCOUNT -p 80:80 flask_container
    ```
 
-You should now be able to see the app running on http://localhost
+You should now be able to see the app running on http://localhost and can test it with files from [testfiles][4]
 
-For more information on how to run the app without docker see [Flask/Gunicorn][4]
+For more information on how to run the app without docker see [Flask/Gunicorn][5]
 
 
 Common pitfalls:
@@ -70,10 +70,11 @@ Common pitfalls:
     SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
    ```
 
-[Back to main][5]
+[Back to main][6]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform
 [2]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake_Azure
 [3]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake
-[4]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDComposeWebApp/app
-[5]: https://github.com/Philipeace/cloudsolutions/tree/main/
+[4]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDContainerInstance/app/testfiles
+[5]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDComposeWebApp/app
+[6]: https://github.com/Philipeace/cloudsolutions/tree/main/
