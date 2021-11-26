@@ -57,8 +57,11 @@ If you have created the [terraform/Snowflake][3] infrastructure and created the 
    ```
     docker build -t flask_container .
 
-    docker run -e $SNOWFLAKE_USERNAME=$SNOWFLAKE_USERNAME -e $SNOWFLAKE_PASSWORD=$SNOWFLAKE_PASSWORD -e $SNOWFLAKE_ACCOUNT=$SNOWFLAKE_ACCOUNT -p 8080:8080 flask_container
+    docker run -e SNOWFLAKE_USERNAME -e SNOWFLAKE_PASSWORD -e SNOWFLAKE_ACCOUNT -p 80:80 flask_container
    ```
+
+You should now be able to see the app running on http://localhost
+
 For more information on how to run the app without docker see [Flask/Gunicorn][4]
 
 [Back to main][5]
@@ -66,5 +69,5 @@ For more information on how to run the app without docker see [Flask/Gunicorn][4
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform
 [2]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake_Azure
 [3]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake
-[4]: https://github.com/Philipeace/cloudsolutions/tree/main/ansible/app
+[4]: https://github.com/Philipeace/cloudsolutions/tree/main/azure/CICDComposeWebApp/app
 [5]: https://github.com/Philipeace/cloudsolutions/tree/main/
