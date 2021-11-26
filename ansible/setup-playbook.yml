@@ -79,6 +79,6 @@
       environment:
         SNOWFLAKE_USERNAME: "{{  sfusr  }}"
         SNOWFLAKE_PASSWORD: "{{ sfpwd }}"
-        SNOWFLAKE_ACCOUNT: "{{ sfac }}"
+        SNOWFLAKE_ACCOUNT: "{{ sfacc }}"
       # above needs nohup to run in the background, & alone won't actually start gunicorn and without both it will just run indefinitely
       

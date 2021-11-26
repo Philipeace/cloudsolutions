@@ -9,5 +9,6 @@ web:
     ansible_sudo_pass: "*****" 
     sfusr: "*****"
     sfpwd: "*****"
-    sfac: "*****"
+    sfacc: "*****"
+    #sf = snowflake
   
