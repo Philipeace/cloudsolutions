@@ -53,15 +53,18 @@ This project deploys the flask app using docker-compose to run the app with guni
 9.    watch magic unfold
 
 # Run locally:
-If you have created the [terraform/Snowflake][3] infrastructure and created the variables from 5 on your environment run:
+If you have created the [terraform/Snowflake][3] infrastructure and created the first three (snowflake) variables from 5. on your environment run:
    ```
-    docker-compose build --no-cache --pull
+    docker build -t flask_container .
 
-    docker-compose up
+    docker run -e $SNOWFLAKE_USERNAME=$SNOWFLAKE_USERNAME -e $SNOWFLAKE_PASSWORD=$SNOWFLAKE_PASSWORD -e $SNOWFLAKE_ACCOUNT=$SNOWFLAKE_ACCOUNT -p 8080:8080 flask_container
    ```
-[Back to main][4]
+For more information on how to run the app without docker see [Flask/Gunicorn][4]
+
+[Back to main][5]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform
 [2]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake_Azure
 [3]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform/Snowflake
-[4]: https://github.com/Philipeace/cloudsolutions/tree/main/
+[4]: https://github.com/Philipeace/cloudsolutions/tree/main/ansible/app
+[5]: https://github.com/Philipeace/cloudsolutions/tree/main/
