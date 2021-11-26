@@ -1,21 +1,21 @@
 # About this Project
-This project contains an application to store the contents of .txt-files from searches on the [Cosmas2 database of german language][1] in a snowflake database and return the extracted contents as .csv-files. The readme's in the [/app folders will give more insight to this flask app][2]. Said app is running with gunicorn. Depending on the deployment model gunicorn might be proxied by NginX. 
+This project contains an application to store the contents of .txt-files from searches on the [Cosmas2 database of german language][1] in a snowflake database and return the extracted contents as .csv-files.
+
+The readmes in the [/app folders will give more insight to this flask app][2]. 
+Said app is running with gunicorn, depending on the deployment model gunicorn might be proxied by NginX. 
 The project includes 3 different ways of deployment, described more in depth in their folders.
 
 The following tools/frameworks/cloud-providers have been used to create/automate this process:
 * Terraform
 * Ansible
+* Snowflake
 * Flask
 * Pipenv
 * Unittest
 * Gunicorn
 * Nginx
 * Docker/Docker-Compose
-* Snowflake
 * Azure/DevOps/CICD-pipelines
-
-# Prerequisits
-- as described in [terraform][3]
 
 # Deployment Goal
 Choose one of the deployment models:
