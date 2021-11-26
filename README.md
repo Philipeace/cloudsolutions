@@ -1,5 +1,5 @@
 # About this Project
-This project contains an application to store the contents of .txt-files from the [Cosmas2 database of german language][1] in a snowflake database and return the contents as .csv-files. Said application is implemented with flask and served with gunicorn. Depending on the deployment model gunicorn might be served with NginX.
+This project contains an application to store the contents of .txt-files from searches on the [Cosmas2 database of german language][1] in a snowflake database and return the extracted contents as .csv-files. Said application is implemented with flask and served with gunicorn. Depending on the deployment model gunicorn might be served with NginX.
 The project includes 3 different ways of deployment, described more in depth in their folders.
 
 The following tools/frameworks/cloud-providers have been used to create/automate this process:
