@@ -47,7 +47,10 @@ you should now be able to see flask running on http://localhost:5000
 
 you should now be able to see gunicorn running on http://localhost:8080
 
-
+Common pitfalls:
+   ```
+    SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
+   ```
 
 [Back to main][2]
 

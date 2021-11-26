@@ -73,6 +73,12 @@ If you have created the [terraform/Snowflake][3] infrastructure and created the 
 
     docker-compose up
    ```
+
+Common pitfalls:
+   ```
+    SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
+   ```
+
 [Back to main][4]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform

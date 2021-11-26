@@ -64,6 +64,12 @@ You should now be able to see the app running on http://localhost
 
 For more information on how to run the app without docker see [Flask/Gunicorn][4]
 
+
+Common pitfalls:
+   ```
+    SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
+   ```
+
 [Back to main][5]
 
 [1]: https://github.com/Philipeace/cloudsolutions/tree/main/terraform

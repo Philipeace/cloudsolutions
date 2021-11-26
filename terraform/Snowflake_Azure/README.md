@@ -17,6 +17,11 @@
     
     terraform apply
    ```
+   
+Common pitfalls:
+   ```
+    SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
+   ```
 
 [Back to main][2]
 

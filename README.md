@@ -27,10 +27,7 @@ Choose one of the deployment models:
 My azure test month ran out before I finished so 3. isn't 100% operational yet (only endpoint "/" is available, for the other endpoints it needs https enabled so that the snowflake-connector can work) and has some open issues in terms of automation. 1. and 2. should work as advertised.
 The technologies aren't chosen to be a best fit for the problems but to showcase my ability to use them all. For the scope of the script I have automated here a simple function app might have sufficed.
 
-Common pitfalls:
-   ```
-    SNOWFLAKE_ACCOUNT = O13IJkl.west-europe.azure (not just O13IJkl)
-   ```
+
 
 [1]: https://cosmas2.ids-mannheim.de/cosmas2-web/
 [2]: https://github.com/Philipeace/cloudsolutions/tree/main/ansible/app
