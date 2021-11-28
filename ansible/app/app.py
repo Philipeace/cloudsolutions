@@ -6,7 +6,9 @@ import config
 from flask import Flask, request, render_template,  send_file, redirect
 from werkzeug.middleware.proxy_fix import ProxyFix
 
+
 app = Flask(__name__)
+
 #important for nginx otherwise only timeouts while trying to make calls to functions
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
@@ -63,9 +65,10 @@ def data():
 	finally:
 		conn.close()
 
-# flask route
+#enable POST on '/data' endpoint to delete rows
 @app.route('/data', methods=['POST','DELETE'])
 def delete_data():
+	create_row_delete_procedure()
 	#establish a snowflake connection and set working parameters
 	conn = sf.connect(user=config.username,account=config.account,password=config.password,role=config.role, warehouse = config.warehouse, database = config.database, schema = config.schema)
 	try:
@@ -75,7 +78,7 @@ def delete_data():
 		cur.execute("USE DATABASE \"{}\";".format(config.database))
 		cur.execute("USE SCHEMA \"{}\".\"{}\";".format(config.database,config.schema))
 		#delete and show data
-		cur.execute("DELETE FROM \"{}\".\"{}\".\"{}\" where \"id\" = '{}'".format(config.database,config.schema, config.table, request.form.get('col')))
+		cur.execute("CALL delete_row ({}) ;".format(request.form.get('col')))
 		cur.execute("SELECT * FROM \"{}\".\"{}\".\"{}\" LIMIT 100".format(config.database, config.schema,config.table))
 		rows = cur.fetchall()
 		return render_template('data.html',rows=rows)
@@ -85,10 +88,12 @@ def delete_data():
 	finally:
 		conn.close()
 
+#create endpoint '/download' and redirect to home
 @app.route('/download',methods=['GET'])
 def getdown():
 	return redirect("/")
 
+#create download route to specific file
 @app.route('/download/<string:filename>', methods=['GET'])
 def download(filename):
 	try:
@@ -98,6 +103,7 @@ def download(filename):
 		print(e)
 		return redirect("/")
 
+#procedure to stop SQL injections inside the .txt-files on endpoint '/'
 def create_row_push_procedure():
 	query =		'''CREATE OR REPLACE PROCEDURE add_row(docID string, Quelle string, Text string, Datum string, Titel string, Vorkommen string, Extra_Info string, Ressort string, Fachgebiet string)
 				RETURNS Object
@@ -121,6 +127,33 @@ def create_row_push_procedure():
 	finally:
 		conn.close()
 
+#procedure to stop sql injections with POST on endpoint '/data'
+def create_row_delete_procedure():
+	query =		'''CREATE OR REPLACE PROCEDURE delete_row(ID float)
+				RETURNS Object
+				LANGUAGE JAVASCRIPT
+				AS
+				$$
+				var sql_query = `DELETE FROM \"{}\".\"{}\".\"{}\" where \"id\" = :1;`
+				var stmt = snowflake.createStatement( {} sqlText: sql_query, binds: [ID] {} );
+				var res  = stmt.execute();
+				$$
+				;'''.format(config.database,config.schema,config.table,"{","}")
+	conn = sf.connect(user=config.username,account=config.account,password=config.password,role=config.role, warehouse = config.warehouse, database = config.database, schema = config.schema)
+	cur = conn.cursor()
+	try:
+		cur.execute("USE WAREHOUSE \"{}\";".format(config.warehouse))
+		cur.execute("USE DATABASE \"{}\";".format(config.database))
+		cur.execute("USE SCHEMA \"{}\".\"{}\";".format(config.database,config.schema))
+		cur.execute(query)
+	except Exception as e:
+		print(e)
+	finally:
+		conn.close()
+
+
+
+
 # insert single row into standard table
 def push_data_row(data_row):
 	create_row_push_procedure()
@@ -137,7 +170,7 @@ def push_data_row(data_row):
 		nl.append(str)
 	try:
 		#push single datarow
-		cur.execute("CALL ADD_ROW ({},{},{},{},{},{},{},{},{});".format(nl[0],nl[1],nl[2],nl[3],nl[4],nl[5],nl[6],nl[7],nl[8]))
+		cur.execute("CALL add_row ({},{},{},{},{},{},{},{},{});".format(nl[0],nl[1],nl[2],nl[3],nl[4],nl[5],nl[6],nl[7],nl[8]))
 	except Exception as e:
 		print(e)
 	finally:
@@ -146,7 +179,6 @@ def push_data_row(data_row):
 #insert as many rows as needed
 def push_data(data):
 	create_row_push_procedure()
-	print("test here")
 	sf.paramstyle = 'qmark'
 	conn = sf.connect(user=config.username,account=config.account,password=config.password,role=config.role, warehouse = config.warehouse, database = config.database, schema = config.schema)
 	cur = conn.cursor()
@@ -173,8 +205,8 @@ def push_data(data):
 	finally:
 		conn.close()
 
+#seperates the found texts from the rest of the file
 def generate_texts_from_txt(file):
-	#cut all the texts into pieces
 	x = open('files/'+file,"r", encoding="ISO-8859-1")
 	relevanttext = str.split(x.read(),"gesamten Treffer")
 	splittext = str.split(relevanttext[2],"\n\n")
@@ -182,32 +214,32 @@ def generate_texts_from_txt(file):
 	x.close()
 	return splittext
 
+#generator to find occurences of characters on strings
 def find_idx(str, ch):
 	yield [i for i, c in enumerate(str) if c == ch]
 
+#blackbox to extract information in rows/columns instead of .txt-file (with full texts)
 def script(file):	
 	all_texts = generate_texts_from_txt(file)
 	resource_list, version_list, date_list, text_list, usage_list, area_list, title_list, ressort_list, docID_list = [[],[],[],[],[],[],[],[],[]]
 	#loop through all texts
 	for t in all_texts:
+		#contingency code in case there is more than one date in the text
+		#the date is relevant to determine where the other informations in the text are
 		dates_found = re.search(r'\d{2}(\.|-)\d{2}(\.|-)\d{4}',t)
 		if dates_found != None:
 			span = dates_found.span()
 			while dates_found != None:
-			   
 				dates_found = re.search(r'\d{2}(\.|-)\d{2}(\.|-)\d{4}',t[span[1]:-1])
-				
 				if dates_found == None:
 					break
 				else:
 					span = ((span[0]+ab.span()[0]),(span[1]+ab.span()[1]))
-		#() im end-teil problem
-		#35 muss berechnet werden um () "gut" zu lösen
+		#finding the relative position of the the informations parenthesis in the end of a text
 		h = []		
 		for idx in find_idx(t,"("):
 			h+=idx
 		if h != []:	
-
 			if h[-1]<span[0] and '/' in t[h[-1]:span[0]]:
 				text_only =t[0:h[-1]]
 				info = t[h[-1]+1:-1]
@@ -224,7 +256,7 @@ def script(file):
 		else:
 			text_only =t
 			info = t
-		#<B> problem
+		#extracting the usage found in the texts marked by <B> block(s)
 		if "<B>" in text_only:
 			search_container = str.split(text_only,"<B>")
 			if len(search_container) >2:
@@ -286,13 +318,9 @@ def script(file):
 		ressort_list.append(ressort)
 		area_list.append(sachgebiet)	
 	#create dict to convert into pandas dataframe to export as csv
-	d = {"docID":docID_list,"Quelle":resource_list,"Text":text_list,"Datum":date_list,"Titel":title_list,"Vorkommen":usage_list,"Extra-Info":version_list,"Ressort":ressort_list,"Fachgebiet":area_list}	
-	print("push entire data")
-	push_data(d)
-	print("fail or no?")
+	d = {"docID":docID_list,"Quelle":resource_list,"Text":text_list,"Datum":date_list,"Titel":title_list,"Vorkommen":usage_list,"Extra-Info":version_list,"Ressort":ressort_list,"Fachgebiet":area_list}
 	d = pd.DataFrame(data=d)
 	d.to_csv(os.path.join("files",os.path.splitext(file)[0]+".csv"),index=False)
-	print(d)
 	return os.path.splitext(file)[0]+".csv"
 
 
