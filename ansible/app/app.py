@@ -319,6 +319,7 @@ def script(file):
 		area_list.append(sachgebiet)	
 	#create dict to convert into pandas dataframe to export as csv
 	d = {"docID":docID_list,"Quelle":resource_list,"Text":text_list,"Datum":date_list,"Titel":title_list,"Vorkommen":usage_list,"Extra-Info":version_list,"Ressort":ressort_list,"Fachgebiet":area_list}
+	push_data(d)
 	d = pd.DataFrame(data=d)
 	d.to_csv(os.path.join("files",os.path.splitext(file)[0]+".csv"),index=False)
 	return os.path.splitext(file)[0]+".csv"
